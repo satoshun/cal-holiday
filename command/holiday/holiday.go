@@ -9,20 +9,28 @@ type holiday interface {
 }
 
 type gantan struct{}
+type seijin struct{}
 type kenkoku struct{}
 type shouwa struct{}
 type kenpou struct{}
 type midori struct{}
 type kodomo struct{}
+type umi struct{}
 type yama struct{}
+type keirou struct{}
 type bunka struct{}
+type taiiku struct{}
 type kinrou struct{}
 type tennou struct{}
 
-// TODO: umi, shunbun, shuubun, taiiku, keirou, seijin
+// TODO: shunbun, shuubune
 
 func (g *gantan) isHoliday(d time.Time) bool {
 	return d.Month() == 1 && d.Day() == 1
+}
+func (g *seijin) isHoliday(d time.Time) bool {
+	return d.Month() == 1 &&
+		(d.Weekday() == time.Monday && d.Day() >= 8 && d.Day() <= 14)
 }
 func (g *kenkoku) isHoliday(d time.Time) bool {
 	return d.Month() == 2 && d.Day() == 11
@@ -39,8 +47,20 @@ func (g *midori) isHoliday(d time.Time) bool {
 func (g *kodomo) isHoliday(d time.Time) bool {
 	return d.Month() == 5 && d.Day() == 5
 }
+func (g *umi) isHoliday(d time.Time) bool {
+	return d.Month() == 7 &&
+		(d.Weekday() == time.Monday && d.Day() >= 15 && d.Day() <= 21)
+}
 func (g *yama) isHoliday(d time.Time) bool {
 	return d.Month() == 8 && d.Day() == 11
+}
+func (g *keirou) isHoliday(d time.Time) bool {
+	return d.Month() == 9 &&
+		(d.Weekday() == time.Monday && d.Day() >= 15 && d.Day() <= 21)
+}
+func (g *taiiku) isHoliday(d time.Time) bool {
+	return d.Month() == 10 &&
+		(d.Weekday() == time.Monday && d.Day() >= 8 && d.Day() <= 14)
 }
 func (g *bunka) isHoliday(d time.Time) bool {
 	return d.Month() == 11 && d.Day() == 3
@@ -66,9 +86,15 @@ func IsHoliday(y, m, d int) bool {
 func init() {
 	holidays = make([]holiday, 0)
 	holidays = append(holidays,
-		&gantan{}, &kenkoku{}, &bunka{},
-		&shouwa{}, &kenpou{}, &midori{}, &kodomo{},
-		&yama{}, &kinrou{}, &tennou{},
+		&gantan{}, &seijin{},
+		&kenkoku{},
+		&bunka{},
+		&shouwa{},
+		&kenpou{}, &midori{}, &kodomo{},
+		&umi{},
+		&yama{},
+		&keirou{},
+		&taiiku{},
+		&kinrou{}, &tennou{},
 	)
 }
-vv
