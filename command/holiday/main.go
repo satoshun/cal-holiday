@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
+	"github.com/satoshun/cal-holiday"
 )
 
 type calSt struct {
@@ -24,7 +25,7 @@ func (cal *calSt) format() string {
 	pc := color.New(color.BgBlue).SprintFunc()
 	d := string(cal.origin)
 	for i := 1; i <= cal.days; i++ {
-		if IsHoliday(cal.year, cal.month, i) {
+		if holiday.IsHoliday(cal.year, cal.month, i) {
 			s := fmt.Sprintf("%2d", i)
 			d = strings.Replace(d, s, pc(s), 1)
 		}
