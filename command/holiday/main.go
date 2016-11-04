@@ -13,6 +13,16 @@ import (
 	"github.com/satoshun/cal-holiday"
 )
 
+var (
+	colors = []*color.Color{
+		color.New(color.BgBlue),
+		color.New(color.BgYellow),
+		color.New(color.BgMagenta),
+		color.New(color.BgGreen),
+		color.New(color.BgWhite),
+	}
+)
+
 type calSt struct {
 	year  int
 	month int
@@ -22,15 +32,17 @@ type calSt struct {
 }
 
 func (cal *calSt) format() string {
-	pc := color.New(color.BgBlue).SprintFunc()
 	var appends []string
 	d := string(cal.origin)
+	ci := 0
 	for i := 1; i <= cal.days; i++ {
 		if h := holiday.Get(cal.year, cal.month, i); h != nil {
+			pc := colors[ci].SprintFunc()
 			s := fmt.Sprintf("%2d", i)
 			d = strings.Replace(d, s, pc(s), 1)
 			appends = append(appends,
-				strconv.Itoa(cal.month)+"/"+strconv.Itoa(i)+" "+h.Name())
+				pc(strconv.Itoa(cal.month)+"/"+strconv.Itoa(i)+" "+h.Name()))
+			ci++
 		}
 	}
 	return d +
