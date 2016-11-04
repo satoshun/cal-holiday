@@ -23,15 +23,18 @@ type calSt struct {
 
 func (cal *calSt) format() string {
 	pc := color.New(color.BgBlue).SprintFunc()
+	var appends []string
 	d := string(cal.origin)
 	for i := 1; i <= cal.days; i++ {
-		if holiday.IsHoliday(cal.year, cal.month, i) {
+		if h := holiday.Get(cal.year, cal.month, i); h != nil {
 			s := fmt.Sprintf("%2d", i)
 			d = strings.Replace(d, s, pc(s), 1)
+			appends = append(appends,
+				strconv.Itoa(cal.month)+"/"+strconv.Itoa(i)+" "+h.Name())
 		}
 	}
-	// TODO: this code should move read function
-	return strings.Trim(d, "\n")
+	return d +
+		strings.Join(appends, "\n")
 }
 
 func main() {
