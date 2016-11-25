@@ -15,11 +15,11 @@ import (
 
 var (
 	colors = []*color.Color{
-		color.New(color.BgBlue),
-		color.New(color.BgYellow),
-		color.New(color.BgMagenta),
-		color.New(color.BgGreen),
-		color.New(color.BgWhite),
+		color.New(color.BgBlue).Add(color.Bold),
+		color.New(color.FgBlack).Add(color.Bold).Add(color.BgYellow),
+		color.New(color.BgMagenta).Add(color.Bold),
+		color.New(color.BgGreen).Add(color.Bold),
+		color.New(color.BgWhite).Add(color.Bold),
 	}
 )
 
