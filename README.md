@@ -1,10 +1,13 @@
 # japan holiday command for cal
 
+[![GoDoc](https://godoc.org/github.com/satoshun/cal-holiday?status.svg)](https://godoc.org/github.com/satoshun/cal-holiday)
+
+
 ## install
 
 use golang
 
-```
+```sh
 go get -u github.com/satoshun/cal-holiday/command/holiday
 ```
 
@@ -19,7 +22,7 @@ show current month calendar with holiday
 cal | holiday
 ```
 
-<img src="screenshots/1.png" height="400" alt="Screenshot"/>
+<img src="screenshots/1.png" height="400" alt="Screenshot" />
 
 
 ## TODO
